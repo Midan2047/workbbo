@@ -9,10 +9,14 @@
 import UIKit
 
 class WorkTableViewController: UITableViewController {
-
+    //prepare에서 인자로 넘겨주기 위해서 list에 값들을 담았습니다.
+    //detailText같은 경우 모두 지원 으로 되어 있기에
+    //따로 리스트로 추가하지않고 그냥 DetailViewController에서
+    //모두 지원으로 통일 시켰습니다.
+    var list :[String] = ["건설", "환경", "전자", "컴퓨터","디자인","수학","화학","생명","경영","마케팅"]
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -40,7 +44,7 @@ class WorkTableViewController: UITableViewController {
         // Configure the cell...
         // cell.textLabel?.text = "Supremo"
         //cell.detailTextLabel?.text = "Columbia"
-
+/*
         if indexPath.row == 0{
             cell.textLabel?.text = "건설"
             cell.detailTextLabel?.text = "지원"
@@ -72,7 +76,13 @@ class WorkTableViewController: UITableViewController {
             cell.textLabel?.text = "마케팅"
             cell.detailTextLabel?.text = "지원"
         }
-
+*/
+        //위 함수는 cell하나당 한번씩 실행되기 때문에
+        //위와 같이 indexPath.row를 비교하지 않고 list형태의
+        //자료구조를 사용하여 index를 통해 접근하는 것이
+        //효율적일것 같습니다.
+        cell.textLabel?.text = list[indexPath.row]
+        cell.detailTextLabel?.text = "지원"
         return cell
     }
 
@@ -112,14 +122,18 @@ class WorkTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let destVC = segue.destination as! DetailViewController
+        let selectedCategory = list[self.tableView.indexPathForSelectedRow!.row]
+        destVC.name = selectedCategory
+        
         // Get the new view controller using segue.destination.
         // Pass the selected object to the new view controller.
     }
-    */
+ 
 
 }
