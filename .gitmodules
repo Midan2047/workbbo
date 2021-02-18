@@ -1,4 +1,4 @@
 [submodule "SwiftyBootpay"]
 	path = SwiftyBootpay
 	url = https://github.com/Midan2047/SwiftyBootpay
-	branch = master
+	branch = upstream/master
